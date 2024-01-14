@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clientewebapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clientewebapp
+  template:
+    metadata:
+      labels:
+        app: clientewebapp
+    spec:
+      containers:
+        - name: clientewebapp
+          image: marimber/clientewebapp:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clientewebapp-service
+spec:
+  selector:
+    app: clientewebapp
+  ports:
+    - protocol: TCP
+      port: 80
+      nodePort: 30004
+      targetPort: 80
+  type: NodePort

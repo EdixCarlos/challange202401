@@ -1,0 +1,26 @@
+{
+  "name": "msemail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/amqplib": "^0.10.4",
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.3.2",
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.3.1",
+    "mysql2": "^3.7.0"
+  }
+}

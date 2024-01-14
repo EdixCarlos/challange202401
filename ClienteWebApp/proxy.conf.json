@@ -1,0 +1,14 @@
+{
+  "/api-seguridad": {
+    "target": "http://localhost:30002",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/api-seguridad": ""}
+  },
+  "/api-cliente": {
+    "target": "http://localhost:30001",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/api-cliente": ""}
+  }
+}

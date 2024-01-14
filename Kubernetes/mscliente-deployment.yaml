@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mscliente-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mscliente
+  template:
+    metadata:
+      labels:
+        app: mscliente
+    spec:
+      containers:
+        - name: mscliente
+          image: marimber/mscliente:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mscliente-service
+spec:
+  selector:
+    app: mscliente
+  ports:
+    - protocol: TCP
+      port: 3000
+      nodePort: 30001
+      targetPort: 3000
+  type: NodePort

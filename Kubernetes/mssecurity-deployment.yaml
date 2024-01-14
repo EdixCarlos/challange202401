@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssecurity-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssecurity
+  template:
+    metadata:
+      labels:
+        app: mssecurity
+    spec:
+      containers:
+        - name: mssecurity
+          image: marimber/mssecurity:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssecurity-service
+spec:
+  selector:
+    app: mssecurity
+  ports:
+    - protocol: TCP
+      port: 3000
+      nodePort: 30002
+      targetPort: 3000
+  type: NodePort
